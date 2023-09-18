@@ -44,6 +44,7 @@ To run the program:
   ```sh
   sbt "runMain src.main.scala.Main"
   ```
+  Output path to write csv files can be made optional.
 
 ## Sample Output
 
