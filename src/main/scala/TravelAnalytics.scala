@@ -1,6 +1,5 @@
-import org.apache.spark.sql.{Dataset, SparkSession}
+import org.apache.spark.sql.{Dataset, SaveMode, SparkSession}
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.Encoders
 import datasets.{Flight, Passenger}
 import datasets.{CoTraveller, FlightStreaks, FrequentFlyer, NumFlightsPerMonth}
 import org.apache.spark.sql.expressions.Window
@@ -11,7 +10,7 @@ object TravelAnalytics {
 
   import spark.implicits._
 
-  def numFlights(flightsDs: Dataset[Flight]): Dataset[NumFlightsPerMonth] = {
+  def numFlights(flightsDs: Dataset[Flight], outputPath: String): Dataset[NumFlightsPerMonth] = {
     // create a new column month from date
     val flightsMnth = flightsDs.withColumn("month",
       date_format(to_date(col("date"), "yyyy-MM-dd"), "MM"))
@@ -22,11 +21,16 @@ object TravelAnalytics {
       .agg(count("*").alias("numFlights"))
       .orderBy(col("month"))
 
+    numFlightsMnth.coalesce(1).write
+      .option("header", "true")
+      .mode(SaveMode.Overwrite)
+      .csv(outputPath + "/problem1.csv")
+
     // return dataset
     return numFlightsMnth.as[NumFlightsPerMonth]
   }
 
-  def frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight]): Dataset[FrequentFlyer] = {
+  def frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight], outputPath: String): Dataset[FrequentFlyer] = {
 
     // number of flight the passenger has taken
     val flightsTaken = flightsDs.groupBy(col("passengerId"))
@@ -41,11 +45,16 @@ object TravelAnalytics {
       .withColumn("numFlights", col("numFlights").cast(IntegerType))
       .orderBy(desc("numFlights"))
 
+    freqFlyer.coalesce(1).write
+      .option("header", "true")
+      .mode(SaveMode.Overwrite)
+      .csv(outputPath + "/problem2.csv")
+
     // return dataset
     return freqFlyer.as[FrequentFlyer]
   }
 
-  def flightStreaks(flightsDs: Dataset[Flight]): Dataset[FlightStreaks] = {
+  def flightStreaks(flightsDs: Dataset[Flight], outputPath: String): Dataset[FlightStreaks] = {
     // declare window specs
     val rowNumWindow = Window
       .partitionBy("passengerId")
@@ -70,11 +79,17 @@ object TravelAnalytics {
       .agg(coalesce(max(col("maxTravelStreak")), lit(0)).as("longestRun"))
       .orderBy(desc("longestRun"))
 
+    maxTravelStreaks.coalesce(1).write
+      .option("header", "true")
+      .mode(SaveMode.Overwrite)
+      .csv(outputPath + "/problem3.csv")
+
     // return a dataset
     return maxTravelStreaks.as[FlightStreaks]
   }
 
-  def findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String, to: String): Dataset[CoTraveller] = {
+  def findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String,
+                       to: String, outputPath: String): Dataset[CoTraveller] = {
     // filter data based on timelines provided as arguments
     val flightDf2 = flightsDs.withColumnRenamed("passengerId", "passengerId2")
       .withColumn("date", to_date(col("date"), "yyyy-MM-dd"))
@@ -97,6 +112,11 @@ object TravelAnalytics {
       .drop(col("passengerIdArr"))
       .withColumn("numFlightsTogether", col("numFlightsTogether").cast(IntegerType))
       .orderBy(desc("numFlightsTogether"))
+
+    distinctNumCoTravels.coalesce(1).write
+      .option("header", "true")
+      .mode(SaveMode.Overwrite)
+      .csv(outputPath + "/problem4.csv")
 
     // return dataset
     return distinctNumCoTravels.as[CoTraveller]
