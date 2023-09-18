@@ -32,10 +32,13 @@ Before you begin, ensure you have met the following requirements:
 
 The scala program consists of the following functions:
 
-1. numFlights(flightsDs: Dataset[Flight], outputPath: String) - To calculate the number of flights per month
-2. frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight], outputPath: String) - To identify the frequent flyers
-3. flightStreaks(flightsDs: Dataset[Flight], outputPath: String) - To identify the passengers with max travel streaks from the UK
-4. findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String, to: String, outputPath: String) - To identify passenger who travel together
+1. **numFlights(flightsDs: Dataset[Flight], outputPath: String)** - To calculate the number of flights per month
+
+2. **frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight], outputPath: String)** - To identify the frequent flyers
+
+3. **flightStreaks(flightsDs: Dataset[Flight], outputPath: String)** - To identify the passengers with max travel streaks from the UK
+
+4. **findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String, to: String, outputPath: String)** - To identify passenger who travel together
 
 To run the program:
   ```sh
