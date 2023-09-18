@@ -43,6 +43,31 @@ The scala program consists of the following functions:
 To run the program:
   ```sh
   sbt "runMain src.main.scala.Main"
+  ```
 
-Enter the function number to execute when prompted. **findCoTravellers** gets user input before transforming the data.
+## Sample Output
 
+Enter the function to execute: 4
+
+**findCoTravellers** gets user input before transforming the data.
+
+Enter the minimum number of co-travellers:
+5
+Enter the start date (e.g., 2017-01-01):
+2017-01-01
+Enter the end date (e.g., 2017-12-31):
+2017-12-30
+
++-----------+------------+------------------+
+|passengerId|passengerId2|numFlightsTogether|
++-----------+------------+------------------+
+|        760|         701|                15|
+|       2759|        2717|                14|
+|       3590|        3503|                14|
+|       5490|        2939|                13|
+|       4373|        4316|                12|
+|       3093|        1208|                12|
+|        392|         382|                12|
+|       4316|        2759|                12|
+|       1484|        1337|                12|
++-----------+------------+------------------+
