@@ -1,7 +1,4 @@
-import org.apache.spark.sql.{SparkSession, Dataset}
-import org.apache.spark.sql.functions._
-import org.apache.spark.sql.expressions.Window
-import org.apache.spark.sql.Encoders
+import org.apache.spark.sql.{Encoders, SaveMode, SparkSession}
 import datasets.{Flight, Passenger}
 import TravelAnalytics._
 
@@ -33,21 +30,25 @@ object Main extends App {
   val numOfFlights = numFlights(flightDf)
   numOfFlights.coalesce(1).write
     .option("header", "true")
+    .mode(SaveMode.Overwrite)
     .csv("resources/output/problem1.csv")
 
   val freqFlyerDf = frequentFlyer(passengerDf, flightDf)
   freqFlyerDf.coalesce(1).write
     .option("header", "true")
+    .mode(SaveMode.Overwrite)
     .csv("resources/output/problem2.csv")
 
   val flightStreak = flightStreaks(flightDf)
   flightStreak.coalesce(1).write
     .option("header", "true")
+    .mode(SaveMode.Overwrite)
     .csv("resources/output/problem3.csv")
 
   val numCoTravels = findCoTravellers(flightDf, 5, "2017-01-01", "2017-12-31")
   numCoTravels.coalesce(1).write
     .option("header", "true")
+    .mode(SaveMode.Overwrite)
     .csv("resources/output/problem4.csv")
 
   spark.stop()

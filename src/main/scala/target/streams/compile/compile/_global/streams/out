@@ -1,0 +1,109 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:1:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.{SparkSession, Dataset}[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:2:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.functions._[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:3:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.expressions.Window[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:4:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.Encoders[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:5:8: not found: object datasets[0m
+[0m[[0m[31merror[0m] [0m[0mimport datasets.{Flight, Passenger}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:10:24: not found: value SparkSession[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val spark = SparkSession.builder[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:18:22: not found: value Encoders[0m
+[0m[[0m[31merror[0m] [0m[0m  val flightSchema = Encoders.product[Flight].schema[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:18:39: not found: type Flight[0m
+[0m[[0m[31merror[0m] [0m[0m  val flightSchema = Encoders.product[Flight].schema[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:19:25: not found: value Encoders[0m
+[0m[[0m[31merror[0m] [0m[0m  val passengerSchema = Encoders.product[Passenger].schema[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:19:42: not found: type Passenger[0m
+[0m[[0m[31merror[0m] [0m[0m  val passengerSchema = Encoders.product[Passenger].schema[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:25:9: not found: type Flight[0m
+[0m[[0m[31merror[0m] [0m[0m    .as[Flight][0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/Main.scala:31:9: not found: type Passenger[0m
+[0m[[0m[31merror[0m] [0m[0m    .as[Passenger][0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:2:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.functions._[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:1:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.{Dataset, SparkSession}[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:14:47: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def numFlights(flightsDs: Dataset[Flight]): Dataset[NumFlightsPerMonth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:14:29: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def numFlights(flightsDs: Dataset[Flight]): Dataset[NumFlightsPerMonth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:29:83: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight]): Dataset[FrequentFlyer] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:29:34: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight]): Dataset[FrequentFlyer] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:29:65: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight]): Dataset[FrequentFlyer] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:48:50: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def flightStreaks(flightsDs: Dataset[Flight]): Dataset[FlightStreaks] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:48:32: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def flightStreaks(flightsDs: Dataset[Flight]): Dataset[FlightStreaks] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:84:99: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def findCoTravellers(flightsDf: Dataset[Flight], atleastNTimes: Int, from: String, to: String): Dataset[CoTraveller] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:84:35: not found: type Dataset[0m
+[0m[[0m[31merror[0m] [0m[0m  def findCoTravellers(flightsDf: Dataset[Flight], atleastNTimes: Int, from: String, to: String): Dataset[CoTraveller] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:3:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.Encoders[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:4:8: not found: object datasets[0m
+[0m[[0m[31merror[0m] [0m[0mimport datasets.{Flight, Passenger}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:5:8: not found: object datasets[0m
+[0m[[0m[31merror[0m] [0m[0mimport datasets.{CoTraveller, FlightStreaks, FrequentFlyer, NumFlightsPerMonth}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:6:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.expressions.Window[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:7:12: object apache is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.sql.types.IntegerType[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:26:30: not found: type NumFlightsPerMonth[0m
+[0m[[0m[31merror[0m] [0m[0m    return numFlightsMnth.as[NumFlightsPerMonth][0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:45:25: not found: type FrequentFlyer[0m
+[0m[[0m[31merror[0m] [0m[0m    return freqFlyer.as[FrequentFlyer][0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:61:24: not found: value Window[0m
+[0m[[0m[31merror[0m] [0m[0m    val rowNumWindow = Window[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:65:30: not found: value Window[0m
+[0m[[0m[31merror[0m] [0m[0m    val returnRowNumWindow = Window[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:68:21: not found: value Window[0m
+[0m[[0m[31merror[0m] [0m[0m      .rangeBetween(Window.currentRow, Window.unboundedFollowing)[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:68:40: not found: value Window[0m
+[0m[[0m[31merror[0m] [0m[0m      .rangeBetween(Window.currentRow, Window.unboundedFollowing)[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:81:32: not found: type FlightStreaks[0m
+[0m[[0m[31merror[0m] [0m[0m    return maxTravelStreaks.as[FlightStreaks][0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/abishekarunachalam/ScalaTask/FunctionalProgramming/Quantexa/git/FlightTravelAnalytics/src/main/scala/TravelAnalytics.scala:104:38: not found: type CoTraveller[0m
+[0m[[0m[31merror[0m] [0m[0m      return distinctNumCoTravels.as[CoTraveller][0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m36 errors found[0m

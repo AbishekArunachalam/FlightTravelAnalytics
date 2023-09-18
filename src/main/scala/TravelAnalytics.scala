@@ -43,65 +43,62 @@ object TravelAnalytics {
 
     // return dataset
     return freqFlyer.as[FrequentFlyer]
-    }
+  }
 
   def flightStreaks(flightsDs: Dataset[Flight]): Dataset[FlightStreaks] = {
-
-    // remove passengers who have never travelled to the UK to reduce the base
-    val ukTravels = flightsDs
-      .groupBy(col("passengerId"))
-      .agg(max(col("ukOriginDestFlg")).alias("ukFlg"))
-      .filter(col("ukFlg") =!= 0)
-
-    //
-//    val ukTravels = flightsOrdered.join(ukPassengers,
-//      flightsOrdered("passengerId") === ukPassengers("passengerId"), "left_semi")
-//      .orderBy(col("passengerId"), col("date"))
-
+    // declare window specs
     val rowNumWindow = Window
       .partitionBy("passengerId")
       .orderBy("date")
-
     val returnRowNumWindow = Window
       .partitionBy("passengerId")
       .orderBy("date")
       .rangeBetween(Window.currentRow, Window.unboundedFollowing)
 
-    val backAndForth = ukTravels
+    val backAndForth = flightsDs
+      // create a row number window function partition by passengerId
       .withColumn("rowNum", row_number().over(rowNumWindow))
+      // create a window function to populate values based on return to the UK
       .withColumn("ukReturnRowNum", min(when(col("to") === "uk", $"rowNum")
         .otherwise(null)).over(returnRowNumWindow))
+      // filter rows with passenger departing UK
       .where(col("from") === "uk")
       .withColumn("maxTravelStreak", col("ukReturnRowNum") - col("rowNum"))
 
+    // aggregate and get the max travel streak returning to UK for each passenger
     val maxTravelStreaks = backAndForth.groupBy("passengerId")
       .agg(coalesce(max(col("maxTravelStreak")), lit(0)).as("longestRun"))
       .orderBy(desc("longestRun"))
 
+    // return a dataset
     return maxTravelStreaks.as[FlightStreaks]
-    }
+  }
 
-  def findCoTravellers(flightsDf: Dataset[Flight], atleastNTimes: Int, from: String, to: String): Dataset[CoTraveller] = {
-      val flightDf2 = flightsDf.withColumnRenamed("passengerId", "passengerId2")
-        .withColumn("date", to_date(col("date"), "yyyy-MM-dd"))
-        .filter(col("date") >= lit(from) && col("date") <= lit(to))
+  def findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String, to: String): Dataset[CoTraveller] = {
+    // filter data based on timelines provided as arguments
+    val flightDf2 = flightsDs.withColumnRenamed("passengerId", "passengerId2")
+      .withColumn("date", to_date(col("date"), "yyyy-MM-dd"))
+      .filter(col("date") >= lit(from) && col("date") <= lit(to))
 
-      val selfJoinDF = flightsDf.join(flightDf2, Seq("flightId", "date"), "inner")
-        .where(col("passengerId") =!= col("passengerId2"))
-        .orderBy(desc("passengerId"))
+    // perform self join to identify passengers travelling in same flight
+    val selfJoinDF = flightsDs.join(flightDf2, Seq("flightId", "date"), "inner")
+      .where(col("passengerId") =!= col("passengerId2"))
+      .orderBy(desc("passengerId"))
 
-      val numCoTravels = selfJoinDF.groupBy(col("passengerId"), col("passengerId2"))
-        .agg(countDistinct("flightId").alias("numFlightsTogether"))
-        .filter(col("numFlightsTogether") >= atleastNTimes)
+    // filter data based on number of time passenger has flown together
+    val numCoTravels = selfJoinDF.groupBy(col("passengerId"), col("passengerId2"))
+      .agg(countDistinct("flightId").alias("numFlightsTogether"))
+      .filter(col("numFlightsTogether") >= atleastNTimes)
 
-      val distinctNumCoTravels = numCoTravels.withColumn("passengerIdArr",
-        sort_array(array(col("passengerId"), col("passengerId2"))))
-        .dropDuplicates(Seq("passengerIdArr"))
-        .drop(col("passengerIdArr"))
-        .withColumn("numFlightsTogether", col("numFlightsTogether").cast(IntegerType))
-        .orderBy(desc("numFlightsTogether"))
+    // remove duplicated records by sorting array of passenger ids
+    val distinctNumCoTravels = numCoTravels.withColumn("passengerIdArr",
+      sort_array(array(col("passengerId"), col("passengerId2"))))
+      .dropDuplicates(Seq("passengerIdArr"))
+      .drop(col("passengerIdArr"))
+      .withColumn("numFlightsTogether", col("numFlightsTogether").cast(IntegerType))
+      .orderBy(desc("numFlightsTogether"))
 
-      return distinctNumCoTravels.as[CoTraveller]
-    }
-
+    // return dataset
+    return distinctNumCoTravels.as[CoTraveller]
+  }
 }
