@@ -6,6 +6,9 @@
 /test/files/speclib/instrumented.jar
 /tools/*.jar
 
+/mac system file
+.DS_Store
+
 # Developer specific properties
 /build.properties
 /buildcharacter.properties
