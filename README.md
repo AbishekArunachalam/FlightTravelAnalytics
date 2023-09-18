@@ -28,8 +28,18 @@ Before you begin, ensure you have met the following requirements:
    
    sbt run
 
-2. To process data, use the following command:
+## Usage
 
+The scala program consists of the following functions:
+
+1. numFlights(flightsDs: Dataset[Flight], outputPath: String) - To calculate the number of flights per month
+2. frequentFlyer(passengerDs: Dataset[Passenger], flightsDs: Dataset[Flight], outputPath: String) - To identify the frequent flyers
+3. flightStreaks(flightsDs: Dataset[Flight], outputPath: String) - To identify the passengers with max travel streaks from the UK
+4. findCoTravellers(flightsDs: Dataset[Flight], atleastNTimes: Int, from: String, to: String, outputPath: String) - To identify passenger who travel together
+
+To run the program:
   ```sh
-  sbt "runMain src.example.TravelAnalytics path/input_file.csv path/output_file.csv"
+  sbt "runMain src.main.scala.Main"
+
+Enter the function number to execute when prompted. **findCoTravellers** gets user input before transforming the data.
 
