@@ -44,7 +44,16 @@ object Main extends App {
     case "1" => numFlights(flightDf, outputPath).toDF()
     case "2" => frequentFlyer(passengerDf, flightDf, outputPath).toDF()
     case "3" => flightStreaks(flightDf, outputPath).toDF()
-    case "4" => findCoTravellers(flightDf, 5, "2017-01-01", "2017-12-31", outputPath).toDF()
+    case "4" => {
+      println("Enter the minimum number of co-travellers:")
+      val minCoTravellers = scala.io.StdIn.readInt()
+      println("Enter the start date (e.g., 2017-01-01):")
+      val startDate = scala.io.StdIn.readLine()
+      println("Enter the end date (e.g., 2017-12-31):")
+      val endDate = scala.io.StdIn.readLine()
+
+      findCoTravellers(flightDf, 5, "2017-01-01", "2017-12-31", outputPath).toDF()
+    }
     case _ => {
       println("Invalid input. Please enter a valid number from 1 to 4")
       spark.emptyDataFrame
@@ -57,5 +66,4 @@ object Main extends App {
   }
 
   spark.stop()
-
 }
